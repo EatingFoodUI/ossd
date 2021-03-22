@@ -39,16 +39,16 @@ public class Course {
     private Date createTime;
 
     @Column(nullable = true, unique = false)
-    private String collectCount;
+    private Integer collectCount;
 
     @Column(nullable = true, unique = false)
-    private String evaluationCount;
+    private Integer evaluationCount;
 
     public Course(){
 
     }
 
-    public Course(String courseId, String courseName, String courseType, String courseDes, Integer courseLessonSum, String courseIndex, String preStudy, String courseBook, String teacherId, Date createTime, String collectCount, String evaluationCount) {
+    public Course(String courseId, String courseName, String courseType, String courseDes, Integer courseLessonSum, String courseIndex, String preStudy, String courseBook, String teacherId, Date createTime, Integer collectCount, Integer evaluationCount) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseType = courseType;
@@ -143,19 +143,19 @@ public class Course {
         this.createTime = createTime;
     }
 
-    public String getCollectCount() {
+    public Integer getCollectCount() {
         return collectCount;
     }
 
-    public void setCollectCount(String collectCount) {
+    public void setCollectCount(Integer collectCount) {
         this.collectCount = collectCount;
     }
 
-    public String getEvaluationCount() {
+    public Integer getEvaluationCount() {
         return evaluationCount;
     }
 
-    public void setEvaluationCount(String evaluationCount) {
+    public void setEvaluationCount(Integer evaluationCount) {
         this.evaluationCount = evaluationCount;
     }
 }

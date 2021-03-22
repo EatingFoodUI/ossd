@@ -31,10 +31,10 @@ public class StudentRepositoryTest {
     @Test
     public void testModifyPwdById(){
 
-        Student student = new Student("1213","lyl","12345","44132","ess");
+        Student student = new Student("1215","lyll","123456","441326","ess");
         studentRepository.save(student);
 
-        if(studentRepository.modifyPwdById("2345","1213") == 1){
+        if(studentRepository.modifyPwdById("2345","1215") == 1){
             System.out.println("test is sucessful!");
         }else{
             System.out.println("test is faild");

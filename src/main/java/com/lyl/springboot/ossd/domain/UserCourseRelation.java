@@ -1,17 +1,14 @@
 package com.lyl.springboot.ossd.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class UserCourseRelation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
-    private Integer cSRId;
+    private Integer courseUserId;
 
     @Column(nullable = false, unique = false)
     private String courseId;
@@ -29,8 +26,8 @@ public class UserCourseRelation {
 
     }
 
-    public UserCourseRelation(Integer cSRId, String courseId, String studentId, Date createTime, Integer type) {
-        this.cSRId = cSRId;
+    public UserCourseRelation(Integer courseUserId, String courseId, String studentId, Date createTime, Integer type) {
+        this.courseUserId = courseUserId;
         this.courseId = courseId;
         this.studentId = studentId;
         this.createTime = createTime;
@@ -38,11 +35,11 @@ public class UserCourseRelation {
     }
 
     public Integer getcSRId() {
-        return cSRId;
+        return courseUserId;
     }
 
     public void setcSRId(Integer cSRId) {
-        this.cSRId = cSRId;
+        this.courseUserId = cSRId;
     }
 
     public String getCourseId() {
