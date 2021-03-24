@@ -17,9 +17,18 @@ public interface TeacherRepository extends JpaRepository<Teacher,String> {
 
     Teacher findByTeacherEmail(String TeacherEmail);
 
+    Teacher findByTeacherEmailAndTeacherTel(String TeacherEmail, String TeacherTel);
+
     Page<Teacher> findByTeacherName(String TeacherName, Pageable pageable);
 
     Page<Teacher> findByTeacherColleague(String TeacherColleague, Pageable pageable);
+
+    Page<Teacher> findByAuthentication(int authentication, Pageable pageable);
+
+    @Transactional(timeout = 10)
+    @Modifying
+    @Query("UPDATE Teacher set authentication=?1 where teacherId=?2")
+    int modifyAuthenById(int authentication,String teacherId);
 
     @Transactional(timeout = 10)
     @Modifying
@@ -40,4 +49,9 @@ public interface TeacherRepository extends JpaRepository<Teacher,String> {
     @Modifying
     @Query("UPDATE Teacher set teacherEmail =?1 where teacherId=?2")
     int modifyEmailById(String TeacherEmail,String TeacherId);
+
+    @Transactional(timeout = 10)
+    @Modifying
+    @Query("UPDATE Teacher set teacherEmail=?1, teacherTel=?2 where teacherId=?3")
+    int modifyEmailAndTelById(String Email,String Tel, String Id);
 }
