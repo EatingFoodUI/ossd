@@ -39,6 +39,11 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public Teacher findByTeacherEmailAndTeacherTel(String TeacherEmail, String TeacherTel) {
+        return teacherRepository.findByTeacherEmailAndTeacherTel(TeacherEmail, TeacherTel);
+    }
+
+    @Override
     public Page<Teacher> findByTeacherName(String TeacherName, Pageable pageable) {
         return teacherRepository.findByTeacherName(TeacherName, pageable);
     }
@@ -46,6 +51,16 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Page<Teacher> findByTeacherColleague(String TeacherColleague, Pageable pageable) {
         return teacherRepository.findByTeacherColleague(TeacherColleague, pageable);
+    }
+
+    @Override
+    public Page<Teacher> findByAuthentication(int authentication, Pageable pageable) {
+        return teacherRepository.findByAuthentication(authentication, pageable);
+    }
+
+    @Override
+    public int modifyAuthenById(int authentication, String teacherId) {
+        return teacherRepository.modifyAuthenById(authentication, teacherId);
     }
 
     @Override
@@ -66,5 +81,10 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public void modifyEmailById(String TeacherEmail, String TeacherId) {
         teacherRepository.modifyEmailById(TeacherEmail, TeacherId);
+    }
+
+    @Override
+    public void modifyEmailAndTelById(String Email, String Tel, String Id) {
+        teacherRepository.modifyEmailAndTelById(Email, Tel, Id);
     }
 }
