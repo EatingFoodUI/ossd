@@ -16,6 +16,6 @@ public class hello {
     public String string(ModelMap map){
         map.addAttribute("userName", "ityouknow");
         System.out.println("111");
-        return "index1";
+        return "if";
     }
 }

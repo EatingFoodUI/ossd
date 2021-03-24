@@ -19,10 +19,9 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/modify")
 public class PersonalInfoManage {
-    @Value("${user.file.path}")
+    @Value("${PersonPit.addr}")
     private String filePath;
 
-    @Value("${user.file.name}")
     private String fileName;
 
     @Autowired
