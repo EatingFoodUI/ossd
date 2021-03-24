@@ -16,7 +16,7 @@ public class ManagerRepositoryTest {
     @Test
     public void testModifyPwdById(){
 
-        Manager manager = new Manager("1213","123");
+        Manager manager = new Manager("1213","123", 0);
 
         managerRepository.save(manager);
 

@@ -16,7 +16,7 @@ public class TeacherRepositoryTest {
     @Test
     public void testModifyPwdById(){
 
-        Teacher teacher = new Teacher("1213","lyl","cqupt","123","ess@","12345");
+        Teacher teacher = new Teacher("1213","lyl","cqupt","123","ess@","12345",0);
 
         teacherRepository.save(teacher);
 
