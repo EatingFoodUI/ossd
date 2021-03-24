@@ -25,17 +25,21 @@ public class Teacher {
     @Column(nullable = true, unique = false)
     private String teacherPwd;
 
+    @Column(nullable = false, unique = false)
+    private Integer authentication = 0;
+
     public Teacher(){
 
     }
 
-    public Teacher(String teacherId, String teacherName, String teacherColleague, String teacherTel, String teacherEmail, String teacherPwd) {
+    public Teacher(String teacherId, String teacherName, String teacherColleague, String teacherTel, String teacherEmail, String teacherPwd, Integer authentication) {
         this.teacherId = teacherId;
         this.teacherName = teacherName;
         this.teacherColleague = teacherColleague;
         this.teacherTel = teacherTel;
         this.teacherEmail = teacherEmail;
         this.teacherPwd = teacherPwd;
+        this.authentication = authentication;
     }
 
     public String getTeacherId() {
@@ -84,5 +88,13 @@ public class Teacher {
 
     public void setTeacherPwd(String teacherPwd) {
         this.teacherPwd = teacherPwd;
+    }
+
+    public Integer getAuthentication() {
+        return authentication;
+    }
+
+    public void setAuthentication(Integer authentication) {
+        this.authentication = authentication;
     }
 }

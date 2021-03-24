@@ -13,13 +13,17 @@ public class Manager {
     @Column(nullable = false, unique = false)
     private String managerPwd;
 
+    @Column(nullable = false, unique = false)
+    private Integer authentication = 0;
+
     public Manager(){
 
     }
 
-    public Manager(String managerId, String managerPwd) {
+    public Manager(String managerId, String managerPwd, Integer authentication) {
         this.managerId = managerId;
         this.managerPwd = managerPwd;
+        this.authentication = authentication;
     }
 
     public String getManagerId() {
@@ -36,5 +40,13 @@ public class Manager {
 
     public void setManagerPwd(String managerPwd) {
         this.managerPwd = managerPwd;
+    }
+
+    public Integer getAuthentication() {
+        return authentication;
+    }
+
+    public void setAuthentication(Integer authentication) {
+        this.authentication = authentication;
     }
 }
