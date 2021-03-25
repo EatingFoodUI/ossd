@@ -1,7 +1,9 @@
 package com.lyl.springboot.ossd.controller;
 
+import com.lyl.springboot.ossd.domain.AccountPit;
 import com.lyl.springboot.ossd.domain.Student;
 import com.lyl.springboot.ossd.domain.Teacher;
+import com.lyl.springboot.ossd.service.ServiceImplement.AccountPitServiceImpl;
 import com.lyl.springboot.ossd.service.ServiceImplement.StudentServiceImpl;
 import com.lyl.springboot.ossd.service.ServiceImplement.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class PersonalInfoManage {
 
     @Autowired
     private TeacherServiceImpl teacherService;
+
+    @Autowired
+    private AccountPitServiceImpl accountPitService;
 
     @RequestMapping(value = "/modifyPersonInfo", method = RequestMethod.POST)
     public String modifyPersonInfo(@RequestParam("status") String status,
@@ -72,23 +77,28 @@ public class PersonalInfoManage {
         return "-1";
     }
 
-    // @RequestMapping(value = "/modifyAccountPit", method = RequestMethod.POST)
-    @RequestMapping(value = "/index", method = RequestMethod.POST)
-    /**public String modifyAccountPit(@RequestParam("status") String status,
+    @RequestMapping(value = "/modifyAccountPit", method = RequestMethod.POST)
+    public String modifyAccountPit(@RequestParam("status") String status,
                                    @RequestParam("id") String id,
-                                   @RequestParam("pic") MultipartFile multipartFile)**/
-    public ModelAndView getOriginalFilename(@RequestParam("pic") MultipartFile multipartFile){
-        try {
-            // 保存图片
+                                   @RequestParam("pic") MultipartFile multipartFile){
+        // 通过pic存储
+        try{
             File file = new File(filePath + multipartFile.getOriginalFilename());
             multipartFile.transferTo(file);
-        } catch (IOException e) {
+
+            AccountPit accountPit = accountPitService.findByAccount(id);
+            if(accountPit == null){
+                accountPit = new AccountPit(id,filePath+multipartFile,status);
+            }else{
+                accountPit.setPitAddr(filePath+multipartFile);
+            }
+            accountPitService.save(accountPit);
+        }catch (IOException e){
             e.printStackTrace();
+            return "0";
         }
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
-
-        return modelAndView;
+        return "1";
     }
+
 }

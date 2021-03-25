@@ -6,11 +6,11 @@ import org.springframework.data.domain.Pageable;
 
 public interface CourseService {
 
-    Void save(Course course);
+    void save(Course course);
 
     void deleteById(String courseId);
 
-    Course findByCourseId(String CourseIf);
+    Course findByCourseId(String CourseId);
 
     Course findByCourseName(String CourseName);
 

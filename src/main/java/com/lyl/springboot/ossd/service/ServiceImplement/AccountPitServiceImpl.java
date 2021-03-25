@@ -20,4 +20,9 @@ public class AccountPitServiceImpl implements AccountPitService {
     public int modifyPitAddrByAccount(String pitAddr, String account) {
         return accountPitRepository.modifyPitAddrByAccount(pitAddr, account);
     }
+
+    @Override
+    public void save(AccountPit accountPit) {
+        accountPitRepository.save(accountPit);
+    }
 }

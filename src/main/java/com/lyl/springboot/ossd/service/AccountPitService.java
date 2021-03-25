@@ -7,4 +7,5 @@ public interface AccountPitService {
 
     int modifyPitAddrByAccount(String pitAddr, String account);
 
+    void save(AccountPit accountPit);
 }
