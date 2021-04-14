@@ -10,6 +10,8 @@ public interface UserCourseRelationService {
 
     void deleteByCourseUserId(Integer courseUserId);
 
+    UserCourseRelation findByCourseIdAndStudentId(String courseId, String studentId);
+
     Page<UserCourseRelation> findByCourseUserId(String courseUserId, Pageable pageable);
 
     Page<UserCourseRelation> findByCourseId(String CourseId, Pageable pageable);
@@ -22,6 +24,6 @@ public interface UserCourseRelationService {
 
     Page<UserCourseRelation> findByStudentIdAndType(String StudentId, String Type, Pageable pageable);
 
-    int modifyTypeByCourseUserId(String type,String courseUserId);
+    int modifyTypeByCourseUserId(int type,int courseUserId);
 
 }

@@ -4,7 +4,9 @@ import com.lyl.springboot.ossd.domain.AccountPit;
 import com.lyl.springboot.ossd.repository.AccountPitRepository;
 import com.lyl.springboot.ossd.service.AccountPitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AccountPitServiceImpl implements AccountPitService {
 
     @Autowired

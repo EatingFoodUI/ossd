@@ -25,6 +25,11 @@ public class UserCourseRelationServiceImpl implements UserCourseRelationService 
     }
 
     @Override
+    public UserCourseRelation findByCourseIdAndStudentId(String courseId, String studentId) {
+        return userCourseRelationRepository.findByCourseIdAndStudentId(courseId, studentId);
+    }
+
+    @Override
     public Page<UserCourseRelation> findByCourseUserId(String courseUserId, Pageable pageable) {
         return userCourseRelationRepository.findByCourseId(courseUserId, pageable);
     }
@@ -55,7 +60,7 @@ public class UserCourseRelationServiceImpl implements UserCourseRelationService 
     }
 
     @Override
-    public int modifyTypeByCourseUserId(String type, String courseUserId) {
+    public int modifyTypeByCourseUserId(int type, int courseUserId) {
         return userCourseRelationRepository.modifyTypeByCourseUserId(type, courseUserId);
     }
 }

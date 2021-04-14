@@ -1,5 +1,8 @@
 package com.lyl.springboot.ossd.domain;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

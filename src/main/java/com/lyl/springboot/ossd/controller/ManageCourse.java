@@ -14,7 +14,7 @@ import java.io.File;
 
 @RestController
 @RequestMapping("/ManageCourse")
-public class ManageCoourse {
+public class ManageCourse {
 
     @Autowired
     private CourseServiceImpl courseService;
@@ -124,7 +124,7 @@ public class ManageCoourse {
         return "0";
     }
 
-    @RequestMapping("/updateCourseTest")
+    @RequestMapping("/updateCourseQue")
     public String updateCourseQue(@RequestParam("Que") Question question){
         try{
             question.setQueId(GenerateId.generateId());

@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserCourseRelationRepository extends JpaRepository<UserCourseRelation, Integer> {
     UserCourseRelation findByCourseUserId(String courseUserId);
 
+    UserCourseRelation findByCourseIdAndStudentId(String courseId, String studentId);
+
     Page<UserCourseRelation> findByCourseId(String CourseId, Pageable pageable);
 
     Page<UserCourseRelation> findByStudentId(String StudentId, Pageable pageable);
@@ -26,5 +28,5 @@ public interface UserCourseRelationRepository extends JpaRepository<UserCourseRe
     @Transactional(timeout = 10)
     @Modifying
     @Query("UPDATE Course set type=?1 where courseUserId=?2")
-    int modifyTypeByCourseUserId(String type,String courseUserId);
+    int modifyTypeByCourseUserId(int type, int courseUserId);
 }
