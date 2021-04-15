@@ -16,7 +16,7 @@ public class StudentRepositoryTest {
     @Test
     public void testSave() throws Exception{
 
-        Student student = new Student("1213","lyl","12345","44132","ess",0);
+        Student student = new Student("1213","lyl","12345","44132","ess");
         studentRepository.save(student);
 
         Student student1 =  studentRepository.findByStudentId("1213");
@@ -31,7 +31,7 @@ public class StudentRepositoryTest {
     @Test
     public void testModifyPwdById(){
 
-        Student student = new Student("1215","lyll","123456","441326","ess",0);
+        Student student = new Student("1215","lyll","123456","441326","ess");
         studentRepository.save(student);
 
         if(studentRepository.modifyPwdById("2345","1215") == 1){

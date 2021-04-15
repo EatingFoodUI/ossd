@@ -17,9 +17,9 @@ public interface StudentService {
 
     Student findByStudentEmailAndStudentTel(String StudentEmail, String StudentTel);
 
-    Page<Student> findByAuthentication(int authentication, Pageable pageable);
+    //Page<Student> findByAuthentication(int authentication, Pageable pageable);
 
-    int modifyAuthenById(int authentication,String StudentId);
+    //int modifyAuthenById(int authentication,String StudentId);
 
     void modifyPwdById(String StudentPwd, String StudentId);
 

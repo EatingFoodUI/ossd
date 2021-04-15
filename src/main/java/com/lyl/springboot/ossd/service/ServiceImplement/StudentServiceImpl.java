@@ -44,15 +44,17 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findByStudentEmailAndStudentTel(StudentEmail, StudentTel);
     }
 
+    /*
     @Override
     public Page<Student> findByAuthentication(int authentication, Pageable pageable) {
         return studentRepository.findByAuthentication(authentication, pageable);
-    }
+    }*/
 
+    /*
     @Override
     public int modifyAuthenById(int authentication, String StudentId) {
         return studentRepository.modifyAuthenById(authentication, StudentId);
-    }
+    }*/
 
     @Override
     public void modifyPwdById(String studentPwd, String studentId) {

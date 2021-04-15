@@ -1,8 +1,5 @@
 package com.lyl.springboot.ossd.domain;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -28,20 +25,16 @@ public class Student {
     @Column(nullable = false, unique = false)
     private String studentPwd;
 
-    @Column(nullable = false, unique = false)
-    private Integer authentication = 0;
-
     public Student(){
 
     }
 
-    public Student(String studentId, String studentName, String studentTel, String studentEmail, String studentPwd, Integer authentication) {
+    public Student(String studentId, String studentName, String studentTel, String studentEmail, String studentPwd) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentTel = studentTel;
         this.studentEmail = studentEmail;
         this.studentPwd = studentPwd;
-        this.authentication = authentication;
     }
 
     public String getStudentId() {
@@ -82,13 +75,5 @@ public class Student {
 
     public void setStudentPwd(String studentPwd) {
         this.studentPwd = studentPwd;
-    }
-
-    public Integer getAuthentication() {
-        return authentication;
-    }
-
-    public void setAuthentication(Integer authentication) {
-        this.authentication = authentication;
     }
 }

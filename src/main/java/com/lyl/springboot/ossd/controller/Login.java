@@ -30,18 +30,22 @@ public class Login {
         // @RequestParam Map<String,Object> reqMap,
         // String username = reqMap.get("StudentId").toString();
         JSONObject jsonObject = new JSONObject();
-        Student student = studentService.findByStudentId(StudentId);
-        String status;
-        if(student == null){
-            status = "0";
-        }else if(!StudentPwd.equals(student.getStudentPwd())){
-            status = "1";
-        }else{
-            status = "2";
-            String token = tokenService.getToken(student);
-            jsonObject.put("token",token);
+        try{
+            Student student = studentService.findByStudentId(StudentId);
+            String status;
+            if(student == null){
+                status = "0";
+            }else if(!StudentPwd.equals(student.getStudentPwd())){
+                status = "1";
+            }else{
+                status = "2";
+                String token = tokenService.getToken(student);
+                jsonObject.put("token",token);
+            }
+            jsonObject.put("status",status);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        jsonObject.put("status",status);
         return jsonObject;
     }
 

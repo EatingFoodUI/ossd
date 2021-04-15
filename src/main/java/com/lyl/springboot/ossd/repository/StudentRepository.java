@@ -20,13 +20,14 @@ public interface StudentRepository extends JpaRepository<Student,String> {
 
     Student findByStudentEmailAndStudentTel(String StudentEmail, String StudentTel);
 
-    Page<Student> findByAuthentication(int authentication, Pageable pageable);
+    // Page<Student> findByAuthentication(int authentication, Pageable pageable);
 
+    /*
     @Transactional(timeout = 10)
     @Modifying
     @Query("UPDATE Student set authentication=?1 where studentId=?2")
     int modifyAuthenById(int authentication,String StudentId);
-
+    */
 
     @Transactional(timeout = 10)
     @Modifying

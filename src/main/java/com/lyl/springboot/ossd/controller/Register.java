@@ -1,5 +1,6 @@
 package com.lyl.springboot.ossd.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lyl.springboot.ossd.domain.Student;
 import com.lyl.springboot.ossd.domain.Teacher;
 import com.lyl.springboot.ossd.service.ServiceImplement.ManagerServiceImpl;
@@ -26,17 +27,26 @@ public class Register {
     private ManagerServiceImpl managerService;
 
     @RequestMapping(value = "/student", method = RequestMethod.POST)
-    public String registerStudent(@ModelAttribute Student student){
-        if(studentService.findByStudentTel(student.getStudentTel()) != null){
-            return "0";
-        }else if(studentService.findByStudentEmail(student.getStudentEmail()) != null){
-            return "1";
-        }else{
-            String studentId = GenerateId.generateId();
-            student.setStudentId(studentId);
-            studentService.save(student);
-            return "2";
+    public Object registerStudent(String StudentName, String StudentTel, String StudentEmail, String StudentPwd){
+        JSONObject jsonObject = new JSONObject();
+        try{
+            String status;
+            if(studentService.findByStudentTel(StudentTel) != null){
+                status =  "0";
+            }else if(studentService.findByStudentEmail(StudentEmail) != null){
+                status =  "1";
+            }else{
+                String studentId = GenerateId.generateId();
+                Student student = new Student(studentId,StudentName,StudentTel,StudentEmail,StudentPwd);
+                studentService.save(student);
+                jsonObject.put("StudentId", studentId);
+                status =  "2";
+            }
+            jsonObject.put("status",status);
+        }catch (Exception e){
+            e.printStackTrace();
         }
+        return jsonObject;
     }
 
     @RequestMapping(value = "/teacher", method = RequestMethod.POST)
