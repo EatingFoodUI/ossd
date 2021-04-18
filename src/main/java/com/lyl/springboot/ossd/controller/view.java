@@ -12,7 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 
-
+// 查看课程索引信息
 @RestController
 @RequestMapping("/view")
 public class view {
@@ -20,11 +20,15 @@ public class view {
     @Autowired
     private CourseServiceImpl courseService;
 
-    @RequestMapping(value = "/allCourses", method = RequestMethod.GET)
-    public Page<Course> ViewAllCourses(@RequestParam("page") int page){
+    @RequestMapping(value = "/TeacherAllCourse", method = RequestMethod.GET)
+    public Page<Course> ViewTeacherAllCourse(@RequestParam("teacherId") String teacherId,
+                                       @RequestParam("query") String query,
+                                       @RequestParam("pagenum") int pagenum,
+                                       @RequestParam("pageSize") int pageSize){
         try {
-            Pageable pageable = PageRequest.of(page, 20);
-            Page<Course> allCourses = courseService.findAll(pageable);
+            // jpa的page默认是从0开始读的，前端传入的page从1开始。
+            Pageable pageable = PageRequest.of(pagenum-1, pageSize);
+            Page<Course> allCourses = courseService.findByTeacherIdAndAndCourseNameIsLike(teacherId,"%"+query+"%",pageable);
             return allCourses;
         }catch (Exception e){
             e.printStackTrace();

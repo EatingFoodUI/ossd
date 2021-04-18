@@ -50,6 +50,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public Page<Course> findByTeacherIdAndAndCourseNameIsLike(String TeacherId, String CourseName, Pageable pageable) {
+        return courseRepository.findByTeacherIdAndAndCourseNameIsLike(TeacherId,CourseName,pageable);
+    }
+
+    @Override
     public int modifyCourseNameById(String CourseName, String CourseId) {
         return courseRepository.modifyCourseNameById(CourseName, CourseId);
     }

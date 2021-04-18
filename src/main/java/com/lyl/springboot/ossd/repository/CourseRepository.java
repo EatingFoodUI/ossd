@@ -22,6 +22,9 @@ public interface CourseRepository extends JpaRepository<Course, String> {
 
     Page<Course> findByTeacherId(String TeacherId, Pageable pageable);
 
+    // 通过老师账号和课程名称模糊查询
+    Page<Course> findByTeacherIdAndAndCourseNameIsLike(String TeacherId, String CourseName, Pageable pageable);
+
     @Transactional(timeout = 10)
     @Modifying
     @Query("UPDATE Course set courseName=?1 where courseId=?2")
@@ -51,4 +54,6 @@ public interface CourseRepository extends JpaRepository<Course, String> {
     @Modifying
     @Query("UPDATE Course set courseBook=?1 where courseId=?2")
     int modifyCourseBookById(String CourseBook,String CourseId);
+
+    // 老师查看自己创建的所有课程
 }

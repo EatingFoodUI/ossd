@@ -37,42 +37,70 @@ public class ManageCourse {
     @Value("${CourseBook.addr}")
     private String BookPath;
 
+    // 老师创建课程
     @RequestMapping("/createCourse")
-    public String createCourse(@RequestParam("course") Course course){
+    public Object createCourse(String courseName, String courseType,
+                               String courseDes, String courseBook,
+                               String TeacherId){
         try{
+            Course course = new Course();
             String courseId = GenerateId.generateId();
+            // 不需要判断是否有同名课程
             course.setCourseId(courseId);
+            course.setCourseName(courseName);
+            course.setCourseType(courseType);
+            course.setCourseDes(courseDes);
+            course.setCourseBook(courseBook);
+            course.setTeacherId(TeacherId);
             courseService.save(course);
-            return "1";
+            // 添加成功
+            return "{'status':1}";
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "0";
+        // 添加失败
+        return "{'status':0}";
     }
 
+    // 通过课程id修改课程信息
     @RequestMapping("/modifyCourseInfo")
-    public String modifyCourseInfo(@RequestParam("course") Course course){
-        try{
-            if(course.getCourseType() != null){
-                courseService.modifyCourseTypeById(course.getCourseType(), course.getCourseId());
+    public Object modifyCourseInfo(String courseId, String courseType,
+                                   String courseDes, String courseBook){
+        try {
+            Course course = courseService.findByCourseId(courseId);
+            if(course == null){
+                return "{'status':0}";
             }
-            if(course.getCourseDes() != null){
-                courseService.modifyCourseDesById(course.getCourseDes(), course.getCourseId());
+            if(!courseType.equals("")){
+                courseService.modifyCourseTypeById(courseType,courseId);
             }
-            if(course.getCourseIndex() != null){
-                courseService.modifyCourseIndexById(course.getCourseIndex(), course.getCourseId());
+            if(!courseDes.equals("")){
+                courseService.modifyCourseDesById(courseDes,courseId);
             }
-            if(course.getPreStudy() != null){
-                courseService.modifyCoursePreStudyById(course.getPreStudy(), course.getCourseId());
+            if(!courseBook.equals("")){
+                courseService.modifyCourseBookById(courseBook,courseId);
             }
-            if(course.getCourseBook() != null){
-                courseService.modifyCourseBookById(course.getCourseBook(),course.getCourseId());
-            }
-            return "1";
+            return "{'status':1}";
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "0";
+        return "{'status':0}";
+    }
+
+    // 通过课程id删除课程信息
+    @RequestMapping("/deleteCourseInfo")
+    public Object modifyCourseInfo(String courseId){
+        try {
+            Course course = courseService.findByCourseId(courseId);
+            if(course == null){
+                return "{'status':0}";
+            }
+            courseService.deleteById(courseId);
+            return "{'status':1}";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "{'status':0}";
     }
 
     @RequestMapping("/updateCourseVideo")

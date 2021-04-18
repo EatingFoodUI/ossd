@@ -11,7 +11,7 @@ public class Course {
     @Column(nullable = false, unique = true)
     private String courseId;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = true, unique = true)
     private String courseName;
 
     @Column(nullable = true, unique = false)
@@ -45,7 +45,7 @@ public class Course {
     private Integer evaluationCount;
 
     public Course(){
-
+        this.createTime = new Date();
     }
 
     public Course(String courseId, String courseName, String courseType, String courseDes, Integer courseLessonSum, String courseIndex, String preStudy, String courseBook, String teacherId, Date createTime, Integer collectCount, Integer evaluationCount) {

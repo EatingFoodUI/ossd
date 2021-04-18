@@ -20,6 +20,8 @@ public interface CourseService {
 
     Page<Course> findByTeacherId(String TeacherId, Pageable pageable);
 
+    Page<Course> findByTeacherIdAndAndCourseNameIsLike(String TeacherId, String CourseName, Pageable pageable);
+
     int modifyCourseNameById(String CourseName,String CourseId);
 
     int modifyCourseTypeById(String CourseType,String CourseId);
