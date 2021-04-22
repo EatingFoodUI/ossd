@@ -37,7 +37,7 @@ public class Register {
                 status =  "1";
             }else{
                 String studentId = GenerateId.generateId();
-                Student student = new Student(studentId,StudentName,StudentTel,StudentEmail,StudentPwd);
+                Student student = new Student(studentId,StudentName,StudentTel,StudentEmail,StudentPwd, "0");
                 studentService.save(student);
                 jsonObject.put("StudentId", studentId);
                 status =  "2";

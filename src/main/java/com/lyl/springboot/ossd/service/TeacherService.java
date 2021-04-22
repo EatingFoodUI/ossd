@@ -21,7 +21,7 @@ public interface TeacherService {
 
     Page<Teacher> findByTeacherColleague(String TeacherColleague, Pageable pageable);
 
-    Page<Teacher> findByAuthentication(int authentication, Pageable pageable);
+    Page<Teacher> findByTeacherVertify(String Vertify, Pageable pageable);
 
     int modifyAuthenById(int authentication,String teacherId);
 

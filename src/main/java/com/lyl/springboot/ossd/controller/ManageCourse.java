@@ -5,6 +5,9 @@ import com.lyl.springboot.ossd.service.ServiceImplement.*;
 import com.lyl.springboot.ossd.utils.GenerateId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,6 +55,7 @@ public class ManageCourse {
             course.setCourseDes(courseDes);
             course.setCourseBook(courseBook);
             course.setTeacherId(TeacherId);
+            course.setCourseVertify("0");
             courseService.save(course);
             // 添加成功
             return "{'status':1}";
@@ -157,6 +161,41 @@ public class ManageCourse {
         try{
             question.setQueId(GenerateId.generateId());
             questionService.save(question);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "0";
+    }
+
+    // 通过是否审核查找课程
+    @RequestMapping("/ViewCourseByVertify")
+    public Object updateCourseQue(@RequestParam("Vertify") String vertify,
+                                  @RequestParam("pagenum") int pagenum,
+                                  @RequestParam("pageSize") int pageSize){
+        try{
+            Pageable pageable = PageRequest.of(pagenum-1, pageSize);
+            Page<Course> page = courseService.findByVertify(vertify,pageable);
+            return page;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "0";
+    }
+
+    // 审核课程
+    @RequestMapping("/VertityCourseById")
+    public String updateCourseQue(@RequestParam("CourseId") String courseId){
+        try{
+            if(courseId == null){
+                return "0";
+            }
+            Course course = courseService.findByCourseId(courseId);
+            if(course == null){
+                return "1";
+            }
+            course.setCourseVertify("1");
+            courseService.save(course);
+            return "2";
         }catch (Exception e){
             e.printStackTrace();
         }

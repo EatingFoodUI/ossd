@@ -44,11 +44,15 @@ public class Course {
     @Column(nullable = true, unique = false)
     private Integer evaluationCount;
 
+    // 是否通过审核
+    @Column(nullable = true, unique = false)
+    private String courseVertify;
+
     public Course(){
         this.createTime = new Date();
     }
 
-    public Course(String courseId, String courseName, String courseType, String courseDes, Integer courseLessonSum, String courseIndex, String preStudy, String courseBook, String teacherId, Date createTime, Integer collectCount, Integer evaluationCount) {
+    public Course(String courseId, String courseName, String courseType, String courseDes, Integer courseLessonSum, String courseIndex, String preStudy, String courseBook, String teacherId, Date createTime, Integer collectCount, Integer evaluationCount, String courseVertify) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseType = courseType;
@@ -61,6 +65,7 @@ public class Course {
         this.createTime = createTime;
         this.collectCount = collectCount;
         this.evaluationCount = evaluationCount;
+        this.courseVertify = courseVertify;
     }
 
     public String getCourseId() {
@@ -157,5 +162,13 @@ public class Course {
 
     public void setEvaluationCount(Integer evaluationCount) {
         this.evaluationCount = evaluationCount;
+    }
+
+    public String getCourseVertify() {
+        return courseVertify;
+    }
+
+    public void setCourseVertify(String courseVertify) {
+        this.courseVertify = courseVertify;
     }
 }

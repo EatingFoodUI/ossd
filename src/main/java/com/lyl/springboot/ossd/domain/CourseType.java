@@ -5,27 +5,34 @@ import javax.persistence.*;
 @Entity
 public class CourseType {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
-    private Integer courseTypeId;
+    private String courseTypeId;
 
     @Column(nullable = false, unique = true)
     private String courseTypeName;
+
+    @Column(nullable = true, unique = false)
+    private String courseTypePid;
+
+    @Column(nullable = false, unique = false)
+    private Integer courseTypeLevel;
 
     public CourseType(){
 
     }
 
-    public CourseType(Integer courseTypeId, String courseTypeName) {
+    public CourseType(String courseTypeId, String courseTypeName, String courseTypePid, Integer courseTypeLevel) {
         this.courseTypeId = courseTypeId;
         this.courseTypeName = courseTypeName;
+        this.courseTypePid = courseTypePid;
+        this.courseTypeLevel = courseTypeLevel;
     }
 
-    public Integer getCourseTypeId() {
+    public String getCourseTypeId() {
         return courseTypeId;
     }
 
-    public void setCourseTypeId(Integer courseTypeId) {
+    public void setCourseTypeId(String courseTypeId) {
         this.courseTypeId = courseTypeId;
     }
 
@@ -35,5 +42,21 @@ public class CourseType {
 
     public void setCourseTypeName(String courseTypeName) {
         this.courseTypeName = courseTypeName;
+    }
+
+    public String getCourseTypePid() {
+        return courseTypePid;
+    }
+
+    public void setCourseTypePid(String courseTypePid) {
+        this.courseTypePid = courseTypePid;
+    }
+
+    public Integer getCourseTypeLevel() {
+        return courseTypeLevel;
+    }
+
+    public void setCourseTypeLevel(Integer courseTypeLevel) {
+        this.courseTypeLevel = courseTypeLevel;
     }
 }

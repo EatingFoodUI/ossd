@@ -20,6 +20,9 @@ public interface StudentRepository extends JpaRepository<Student,String> {
 
     Student findByStudentEmailAndStudentTel(String StudentEmail, String StudentTel);
 
+    // 通过是否审核查询学生
+    Page<Student> findByStudentVertify(String Vertify, Pageable pageable);
+
     // Page<Student> findByAuthentication(int authentication, Pageable pageable);
 
     /*

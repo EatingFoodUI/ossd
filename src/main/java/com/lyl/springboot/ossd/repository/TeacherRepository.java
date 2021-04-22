@@ -23,7 +23,7 @@ public interface TeacherRepository extends JpaRepository<Teacher,String> {
 
     Page<Teacher> findByTeacherColleague(String TeacherColleague, Pageable pageable);
 
-    Page<Teacher> findByAuthentication(int authentication, Pageable pageable);
+    Page<Teacher> findByTeacherVertify(String Vertify, Pageable pageable);
 
     @Transactional(timeout = 10)
     @Modifying

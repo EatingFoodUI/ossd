@@ -44,6 +44,11 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findByStudentEmailAndStudentTel(StudentEmail, StudentTel);
     }
 
+    @Override
+    public Page<Student> findByStudentVertify(String Vertify, Pageable pageable) {
+        return studentRepository.findByStudentVertify(Vertify,pageable);
+    }
+
     /*
     @Override
     public Page<Student> findByAuthentication(int authentication, Pageable pageable) {

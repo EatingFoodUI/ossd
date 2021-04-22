@@ -26,20 +26,20 @@ public class Teacher {
     private String teacherPwd;
 
     @Column(nullable = false, unique = false)
-    private Integer authentication = 0;
+    private String teacherVertify;
 
     public Teacher(){
 
     }
 
-    public Teacher(String teacherId, String teacherName, String teacherColleague, String teacherTel, String teacherEmail, String teacherPwd, Integer authentication) {
+    public Teacher(String teacherId, String teacherName, String teacherColleague, String teacherTel, String teacherEmail, String teacherPwd, String teacherVertify) {
         this.teacherId = teacherId;
         this.teacherName = teacherName;
         this.teacherColleague = teacherColleague;
         this.teacherTel = teacherTel;
         this.teacherEmail = teacherEmail;
         this.teacherPwd = teacherPwd;
-        this.authentication = authentication;
+        this.teacherVertify = teacherVertify;
     }
 
     public String getTeacherId() {
@@ -90,11 +90,11 @@ public class Teacher {
         this.teacherPwd = teacherPwd;
     }
 
-    public Integer getAuthentication() {
-        return authentication;
+    public String getTeacherVertify() {
+        return teacherVertify;
     }
 
-    public void setAuthentication(Integer authentication) {
-        this.authentication = authentication;
+    public void setTeacherVertify(String teacherVertify) {
+        this.teacherVertify = teacherVertify;
     }
 }

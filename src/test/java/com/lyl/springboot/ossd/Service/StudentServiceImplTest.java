@@ -17,7 +17,7 @@ public class StudentServiceImplTest {
 
     @Test
     public void testFindByStudentTel(){
-        Student student = new Student("1235","lili","123450","1234567890","1234567890");
+        Student student = new Student("1235","lili","123450","1234567890","1234567890","0");
         if(studentService.findByStudentId("1235") != null){
             studentService.deleteById("1235");
         }

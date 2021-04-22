@@ -55,6 +55,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public Page<Course> findByVertify(String Vertify, Pageable pageable) {
+        return courseRepository.findByCourseVertify(Vertify,pageable);
+    }
+
+    @Override
     public int modifyCourseNameById(String CourseName, String CourseId) {
         return courseRepository.modifyCourseNameById(CourseName, CourseId);
     }

@@ -25,16 +25,28 @@ public class Student {
     @Column(nullable = false, unique = false)
     private String studentPwd;
 
+    @Column(nullable = false, unique = false)
+    private String studentVertify;
+
     public Student(){
 
     }
 
-    public Student(String studentId, String studentName, String studentTel, String studentEmail, String studentPwd) {
+    public String getStudentVertify() {
+        return studentVertify;
+    }
+
+    public void setStudentVertify(String studentVertify) {
+        this.studentVertify = studentVertify;
+    }
+
+    public Student(String studentId, String studentName, String studentTel, String studentEmail, String studentPwd, String studentVertify) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentTel = studentTel;
         this.studentEmail = studentEmail;
         this.studentPwd = studentPwd;
+        this.studentVertify = studentVertify;
     }
 
     public String getStudentId() {

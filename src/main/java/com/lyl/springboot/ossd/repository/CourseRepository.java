@@ -25,6 +25,9 @@ public interface CourseRepository extends JpaRepository<Course, String> {
     // 通过老师账号和课程名称模糊查询
     Page<Course> findByTeacherIdAndAndCourseNameIsLike(String TeacherId, String CourseName, Pageable pageable);
 
+    // 通过是否审核查询
+    Page<Course> findByCourseVertify(String Vertify, Pageable pageable);
+
     @Transactional(timeout = 10)
     @Modifying
     @Query("UPDATE Course set courseName=?1 where courseId=?2")

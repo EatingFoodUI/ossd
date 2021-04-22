@@ -54,8 +54,8 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Page<Teacher> findByAuthentication(int authentication, Pageable pageable) {
-        return teacherRepository.findByAuthentication(authentication, pageable);
+    public Page<Teacher> findByTeacherVertify(String Vertify, Pageable pageable) {
+        return teacherRepository.findByTeacherVertify(Vertify,pageable);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class CourseRepositoryTest {
     @Test
     public void findByCourseIdTest(){
         Date date = new Date();
-        Course course = new Course("123", "ert", "123", "123", 12, "courseIndex", "preStudy", "courseBook", "teacherId", date, 12, 12);
+        Course course = new Course("123", "ert", "123", "123", 12, "courseIndex", "preStudy", "courseBook", "teacherId", date, 12, 12,"0");
         courseRepository.save(course);
 
         if(courseRepository.findByCourseId("123").getCourseName().equals("ert")){
@@ -32,7 +32,7 @@ public class CourseRepositoryTest {
     public void testModifyCoursePreStudyById(){
 
         Date date = new Date();
-        Course course = new Course("123", "ert", "123", "123", 12, "courseIndex", "preStudy", "courseBook", "teacherId", date, 12, 12);
+        Course course = new Course("123", "ert", "123", "123", 12, "courseIndex", "preStudy", "courseBook", "teacherId", date, 12, 12,"0");
         courseRepository.save(course);
 
         if(courseRepository.modifyCoursePreStudyById("12345","123")==1){

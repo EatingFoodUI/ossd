@@ -22,6 +22,9 @@ public interface CourseService {
 
     Page<Course> findByTeacherIdAndAndCourseNameIsLike(String TeacherId, String CourseName, Pageable pageable);
 
+    // 通过是否审核查询
+    Page<Course> findByVertify(String Vertify, Pageable pageable);
+
     int modifyCourseNameById(String CourseName,String CourseId);
 
     int modifyCourseTypeById(String CourseType,String CourseId);
