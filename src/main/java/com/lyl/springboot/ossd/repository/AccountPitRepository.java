@@ -12,8 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AccountPitRepository extends JpaRepository<AccountPit, String> {
     AccountPit findByAccount(String account);
 
+    // 通过id和状态status获取
+    AccountPit findByAccountAndWho(String AccountId, String Status);
+
     @Transactional(timeout = 10)
     @Modifying
     @Query("UPDATE AccountPit set pitAddr=?1 where account=?2")
     int modifyPitAddrByAccount(String pitAddr,String account);
+
 }

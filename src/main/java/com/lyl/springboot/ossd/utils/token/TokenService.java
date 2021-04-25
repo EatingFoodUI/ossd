@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 @Service("TokenService")
 public class TokenService {
     // 生成token
-    public String getToken(Student student) {
+    public String getToken(String id, String pwd) {
         String token="";
-        token= JWT.create().withAudience(student.getStudentId())
-                .sign(Algorithm.HMAC256(student.getStudentPwd()));
+        token= JWT.create().withAudience(id)
+                .sign(Algorithm.HMAC256(pwd));
         return token;
     }
 }

@@ -16,6 +16,10 @@ public class AccountPit {
     @Column(nullable = false, unique = false)
     private String who;
 
+    public AccountPit(){
+
+    }
+
     public AccountPit(String account, String pitAddr, String who) {
         this.account = account;
         this.pitAddr = pitAddr;

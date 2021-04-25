@@ -19,6 +19,11 @@ public class AccountPitServiceImpl implements AccountPitService {
     }
 
     @Override
+    public AccountPit findByAccountAndWho(String AccountId, String Status) {
+        return accountPitRepository.findByAccountAndWho(AccountId,Status);
+    }
+
+    @Override
     public int modifyPitAddrByAccount(String pitAddr, String account) {
         return accountPitRepository.modifyPitAddrByAccount(pitAddr, account);
     }

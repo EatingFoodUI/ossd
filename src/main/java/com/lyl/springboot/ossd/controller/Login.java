@@ -2,6 +2,7 @@ package com.lyl.springboot.ossd.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lyl.springboot.ossd.domain.Student;
+import com.lyl.springboot.ossd.domain.Teacher;
 import com.lyl.springboot.ossd.service.ServiceImplement.ManagerServiceImpl;
 import com.lyl.springboot.ossd.service.ServiceImplement.StudentServiceImpl;
 import com.lyl.springboot.ossd.service.ServiceImplement.TeacherServiceImpl;
@@ -39,7 +40,7 @@ public class Login {
                 status = "1";
             }else{
                 status = "2";
-                String token = tokenService.getToken(student);
+                String token = tokenService.getToken(student.getStudentId(),student.getStudentPwd());
                 jsonObject.put("token",token);
             }
             jsonObject.put("status",status);
@@ -55,18 +56,27 @@ public class Login {
     // @Resource
     // private TokenUtils tokenUtils;
 
-    /**@RequestMapping(value = "/Student", method = RequestMethod.POST)
-    public MyResponse loginStudent(@ModelAttribute Student student){
-        Student student1 = studentService.findByStudentId(student.getStudentId());
-        String status;
-        if(student1 == null){
-            status =  "0";
-        }else if(student.getStudentPwd() != student1.getStudentPwd()){
-            status =  "1";
+    @RequestMapping(value = "/Teacher", method = RequestMethod.POST)
+    public Object loginTeacher(String TeacherId, String TeacherPwd){
+        // @RequestParam Map<String,Object> reqMap,
+        // String username = reqMap.get("StudentId").toString();
+        JSONObject jsonObject = new JSONObject();
+        try{
+            Teacher teacher = teacherService.findByTeacherId(TeacherId);
+            String status;
+            if(teacher == null){
+                status = "0";
+            }else if(!TeacherPwd.equals(teacher.getTeacherPwd())){
+                status = "1";
+            }else{
+                status = "2";
+                String token = tokenService.getToken(teacher.getTeacherId(),teacher.getTeacherPwd());
+                jsonObject.put("token",token);
+            }
+            jsonObject.put("status",status);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
-        // token
-        status = "2";
-        return new MyResponse(status, tokenUtils.createToken(student.getStudentId(), student.getAuthentication()));
-    }**/
+        return jsonObject;
+    }
 }

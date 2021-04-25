@@ -50,16 +50,25 @@ public class Register {
     }
 
     @RequestMapping(value = "/teacher", method = RequestMethod.POST)
-    public String registerTeacher(@ModelAttribute Teacher teacher){
-        if(teacherService.findByTeacherTel(teacher.getTeacherTel()) != null){
-            return "0";
-        }else if(teacherService.findByTeacherEmail(teacher.getTeacherEmail()) != null){
-            return "1";
-        }else{
-            String teacherId = GenerateId.generateId();
-            teacher.setTeacherId(teacherId);
-            teacherService.save(teacher);
-            return "2";
+    public Object registerTeacher(@ModelAttribute Teacher teacher){
+        JSONObject jsonObject = new JSONObject();
+        try{
+            String status;
+            if(teacherService.findByTeacherTel(teacher.getTeacherTel()) != null){
+                status =  "0";
+            }else if(teacherService.findByTeacherEmail(teacher.getTeacherEmail()) != null){
+                status =  "1";
+            }else{
+                String teacherId = GenerateId.generateId();
+                teacher.setTeacherId(teacherId);
+                teacherService.save(teacher);
+                jsonObject.put("TeacherId", teacherId);
+                status =  "2";
+            }
+            jsonObject.put("status",status);
+        }catch (Exception e){
+            e.printStackTrace();
         }
+        return jsonObject;
     }
 }
